@@ -1,8 +1,71 @@
 
 <head>
+    <style>
+        * {
+            font-family: Arial;
+            background-color: rgb(34, 33, 32);
+            margin: 0;
+            padding: 0;
+        }
 
+        .container {
+            display: flex;
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+            height: 100vh; 
+        }
+
+        .box {
+            margin: 10px; 
+        }
+
+        input{
+            height: 80px;
+            width: 320px;
+            border: 4px #fff solid;
+            border-radius: 15px;
+            font-size: 1.5em;
+            font-weight: 500;
+            color: white;
+            cursor: pointer;
+            transition: all ease 0.5s;
+        }
+
+        input:hover{
+            color: rgb(0, 0, 0);
+            background-color: #fff;
+        }
+    </style>
 </head>
 
 <body>
-    aa
+    <div class="container">
+
+        <div class="box">
+            <input type="button" value="Create a new database" id="createDatabase">
+        </div>
+
+        <div class="box">
+            <input type="button" value="Edit an existing database" id="editDatabase">
+        </div>
+
+        <div class="box">
+            <input type="button" value="Fill a database with data" id="fillDatabase">
+        </div>
+
+    </div>
+    <script>
+        const createDatabaseButton = document.getElementById('createDatabase');
+
+        createDatabaseButton.addEventListener('click', () => {
+            window.ipcRenderer.send('hide-window');
+        });
+
+        createDatabaseButton.addEventListener('click', () => {
+            window.ipcRenderer.send('create-database-window-open');
+        });
+
+    </script>
 </body>
+
