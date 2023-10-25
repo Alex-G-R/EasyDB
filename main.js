@@ -4,6 +4,8 @@ const path = require('path');
 
 let mainWindow;
 let createDatabaseWindow;
+let editDatabaseWindow;
+let fillDatabaseWindow;
 
 app.whenReady().then(() => {
     mainWindow = new BrowserWindow({
