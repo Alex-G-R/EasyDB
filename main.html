@@ -55,5 +55,17 @@
         </div>
 
     </div>
+    <script>
+        const createDatabaseButton = document.getElementById('createDatabase');
+
+        createDatabaseButton.addEventListener('click', () => {
+            window.ipcRenderer.send('hide-window');
+        });
+
+        createDatabaseButton.addEventListener('click', () => {
+            window.ipcRenderer.send('create-database-window-open');
+        });
+
+    </script>
 </body>
 
