@@ -57,13 +57,32 @@
     </div>
     <script>
         const createDatabaseButton = document.getElementById('createDatabase');
+        const editDatabaseButton = document.getElementById('editDatabase');
+        const fillDatabaseButton = document.getElementById('fillDatabase');
 
+
+        // hide main menu and open a window that allows to create a new database
         createDatabaseButton.addEventListener('click', () => {
             window.ipcRenderer.send('hide-window');
         });
-
         createDatabaseButton.addEventListener('click', () => {
             window.ipcRenderer.send('create-database-window-open');
+        });
+
+        // hide main menu and open a window that allows to edit an existing database
+        editDatabaseButton.addEventListener('click', () => {
+            window.ipcRenderer.send('hide-window');
+        });
+        editDatabaseButton.addEventListener('click', () => {
+            window.ipcRenderer.send('edit-database-window-open');
+        });
+
+        // hide main menu and open a window that allows to fill a database with data
+        fillDatabaseButton.addEventListener('click', () => {
+            window.ipcRenderer.send('hide-window');
+        });
+        fillDatabaseButton.addEventListener('click', () => {
+            window.ipcRenderer.send('fill-database-window-open');
         });
 
     </script>
