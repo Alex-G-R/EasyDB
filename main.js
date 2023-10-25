@@ -18,7 +18,8 @@ app.whenReady().then(() => {
         webPreferences: {
             nodeIntegration: true,
             preload: path.join(__dirname, 'preload.js') // Path to preload script
-        }
+        },
+        // icon: __dirname + '/Bluetooth.ico',
     });
 
     /* Load the main.html file as face and change the window name */
@@ -137,7 +138,7 @@ app.whenReady().then(() => {
         }
     });
 
-    
+
     function openTheMainMenu() {
         if (mainWindow === null) {
             mainWindow = new BrowserWindow({
