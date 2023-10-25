@@ -1,0 +1,28 @@
+
+*{
+    font-family: Arial;
+    padding: 0;
+    margin: 0;
+    background-color: rgb(34,33,32);
+}
+
+.main-container{
+    display: flex;
+}
+
+.main-box{
+    padding: 15px;
+    width: 50vw;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+}
+
+.back-to-main-menu{
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: white;
+    background-color: red;
+}
