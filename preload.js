@@ -9,7 +9,8 @@ contextBridge.exposeInMainWorld('ipcRenderer', {
             'hide-window',
             'create-database-window-open',
             'edit-database-window-open',
-            'fill-database-window-open' // don't forget a coma
+            'fill-database-window-open',
+            'back-to-main-menu' // don't forget a coma
         ]; 
         if (validChannels.includes(channel)) {
             ipcRenderer.send(channel, data);

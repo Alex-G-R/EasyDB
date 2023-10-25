@@ -32,6 +32,11 @@ app.whenReady().then(() => {
         });
     });
 
+    // Store a reference to the window object
+    mainWindow.on('closed', () => {
+        mainWindow = null;
+    });
+
 
     ipcMain.on('create-database-window-open', () => {
         if (true) {
@@ -83,6 +88,51 @@ app.whenReady().then(() => {
             fillDatabaseWindow.setTitle('EasyDB ~ Filling in the Database');
         }
     });
+
+    ipcMain.on('back-to-main-menu', () => {
+        if (createDatabaseWindow) {
+            createDatabaseWindow.close();
+            createDatabaseWindow.on('closed', () => {
+                createDatabaseWindow = null;
+            });
+            openTheMainMenu()
+        } 
+        if(fillDatabaseWindow){
+            fillDatabaseWindow.close();
+            fillDatabaseWindow.on('closed', () => {
+                fillDatabaseWindow = null;
+            });
+            openTheMainMenu()
+        } 
+        if(editDatabaseWindow){
+            editDatabaseWindow.close();
+            editDatabaseWindow.on('closed', () => {
+                editDatabaseWindow = null;
+            });
+            openTheMainMenu()
+        }
+    });
+
+    function openTheMainMenu() {
+        if (mainWindow === null) {
+            mainWindow = new BrowserWindow({
+                width: 600,
+                height: 400,
+                autoHideMenuBar: true,
+                webPreferences: {
+                    nodeIntegration: true,
+                    preload: path.join(__dirname, 'preload.js') // Path to preload script
+                }
+            });
+            mainWindow.loadFile('main.html');
+            mainWindow.setTitle('EasyDB ~ Main Menu');
+      
+            // Store a reference to the new window object
+            mainWindow.on('closed', () => {
+                mainWindow = null;
+            });
+        }
+    }
 
 });
 
