@@ -139,6 +139,7 @@ app.whenReady().then(() => {
     });
 
 
+    /* Function that when called will open a new main menu window (mainWindow) */
     function openTheMainMenu() {
         if (mainWindow === null) {
             mainWindow = new BrowserWindow({

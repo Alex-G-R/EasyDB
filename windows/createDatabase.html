@@ -2,7 +2,56 @@
 <head>
     <link rel="stylesheet" href="../styles/default.css">
     <style>
+        .main-container{
+            flex-direction: column; 
+            height: 95vh;
+        }
         
+        .main-box{
+            flex: 1;
+            width: 95vw;
+            overflow: hidden;
+            flex-direction: column;
+        }
+        
+        .input{
+            height: 60px;
+            border-radius: 25px;
+            border: 2px #fff solid;
+            width: 400px;
+            font-size: 1.3em;
+            font-weight: 600;
+            padding-left: 25px;
+            color:#fff;
+            -webkit-appearance: none;
+        }
+
+        .input::-webkit-inner-spin-button,
+        .input::-webkit-outer-spin-button {
+            display: none;
+        }
+
+        #next{
+            height: 60px;
+            border-radius: 25px;
+            border: 2px #fff solid;
+            width: 400px;
+            font-size: 1.3em;
+            font-weight: 600;
+            color:#fff;
+            transition: all ease 0.5s;
+        }
+        #next:hover{
+            color: black;
+            background-color: #fff;
+        }
+
+        #databaseTableNumber{
+            display: none;
+        }
+        #databaseTableName{
+            display: none;
+        }
     </style>
 </head>
 
@@ -12,20 +61,88 @@
     </div>
 
     <div class="main-container">
-        <div class="main-box" id="container-left">
-            <h1>I'am on the left</h1>
-        </div>
-
         <div class="main-box" id="container-middle">
-            <h1>I'am in the middle</h1>
+            <h1>Creating an database</h1>
+            <br> <br>
+
+            <input type="text" class="input" id="databaseName" name="databaseName" placeholder="Enter a database name: ">
+            <input type="number" class="input" id="databaseTableNumber" name="databaseTableNumber" placeholder="Enter the number of tables: ">
+            <input type="text" class="input" id="databaseTableName" name="databaseTableName" placeholder="Enter the name of the table 1: ">
+
+        </div>
+        <div class="main-box">
+            <input type="button" id="next" value="Next">
         </div>
 
-        <div class="main-box" id="container-right">
-            <h1>I'am on the right</h1>
-        </div>
     </div>
 
     <script>
+
+        let $databaseName;
+        let $numberOfTables;
+
+        const databaseNameInput = document.getElementById("databaseName");
+        const databaseTableNumber = document.getElementById("databaseTableNumber");
+        const databaseTableName = document.getElementById("databaseTableName");
+
+
+        const next = document.getElementById("next");
+        let nextStatus = 0;
+
+        /* Get the tables names variables*/
+        let tablesDone = 0;
+        const tablesNames = [];
+
+        function getNextTableName() {
+            if (tablesDone < $numberOfTables) {
+                databaseTableName.value = null;
+                databaseTableName.placeholder = `Enter the name of the table ${tablesDone + 1}`;
+            } else {
+                // All tables have been entered, you can do something with the collected table names.
+                console.log(tablesNames);
+                return;
+            }
+        }
+
+        next.addEventListener("click", () => {
+            if (databaseTableName.value.trim() !== "" && nextStatus == 2) {
+
+                tablesNames.push(databaseTableName.value);
+                tablesDone++;
+            
+                getNextTableName();
+
+            } else {
+                getNextTableName();
+            }
+        });
+
+
+
+        next.addEventListener("click", () => {
+            if(databaseNameInput.value.trim() === "" && nextStatus == 0){
+                // Do nothing
+            } else {
+                $databaseName = toString(databaseNameInput.value.trim());
+
+                nextStatus = 1;
+                databaseNameInput.style.display = "none";
+                databaseTableNumber.style.display = "inline";
+            }
+
+            if(Number(databaseTableNumber.value) <= 0 && nextStatus == 1){
+                // Do nothing
+            } else {
+                $numberOfTables = Number(databaseTableNumber.value);
+
+                nextStatus = 2;
+                databaseTableNumber.style.display = "none";
+                databaseTableName.style.display = "inline";
+                
+            }
+        });
+
+
 
         const backToMainMenu = document.getElementById('back-to-menu');
 
