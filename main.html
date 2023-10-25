@@ -1,34 +1,59 @@
 
 <head>
     <style>
-        *{
+        * {
             font-family: Arial;
-            padding: 0;
+            background-color: rgb(34, 33, 32);
             margin: 0;
-            background-color: rgb(34,33,32);
+            padding: 0;
         }
-        .main-container{
+
+        .container {
             display: flex;
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+            height: 100vh; 
         }
-        #container-right, #container-left {
-            padding: 15px;
-            width: 50vw;
-            text-align: center;
-            justify-content: center;
-            align-items: center;
-            color: #fff;
+
+        .box {
+            margin: 10px; 
+        }
+
+        input{
+            height: 80px;
+            width: 320px;
+            border: 4px #fff solid;
+            border-radius: 15px;
+            font-size: 1.5em;
+            font-weight: 500;
+            color: white;
+            cursor: pointer;
+            transition: all ease 0.5s;
+        }
+
+        input:hover{
+            color: rgb(0, 0, 0);
+            background-color: #fff;
         }
     </style>
 </head>
 
 <body>
-    <div class="main-container">
-        <div class="default-box" id="container-left">
-            <h1>I'am on the left</h1>
+    <div class="container">
+
+        <div class="box">
+            <input type="button" value="Create a new database" id="createDatabase">
         </div>
 
-        <div class="defualt-box" id="container-right">
-            <h1>I'am on the right</h1>
+        <div class="box">
+            <input type="button" value="Edit an existing database" id="editDatabase">
         </div>
+
+        <div class="box">
+            <input type="button" value="Fill a database with data" id="fillDatabase">
+        </div>
+
     </div>
 </body>
+

@@ -3,8 +3,9 @@ const {app, BrowserWindow } = require('electron');
 app.whenReady().then(()=>{
 
     const mainWindow = new BrowserWindow({
-        width: 1600,
-        height: 1000,
+        width: 600,
+        height: 400,
+        autoHideMenuBar: true, // hide the menu bar
         webPreferences: {
             nodeIntegration: true
         }
@@ -15,5 +16,5 @@ app.whenReady().then(()=>{
     mainWindow.loadFile('main.html');
 
     // Set the initial window title
-    mainWindow.setTitle('EasyDB');
+    mainWindow.setTitle('EasyDB ~ Main menu');
 });
