@@ -163,11 +163,46 @@ function generateFormFields(object) {
     form.innerHTML = ''; // Clear previous form fields
 
     for (let i = 0; i < object.numberOfColumns; i++) {
-        const input = document.createElement('input');
-        input.setAttribute('class', 'input');
-        input.setAttribute('type', 'text');
-        input.setAttribute('name', `field${i + 1}`);
-        form.appendChild(input);
+
+        const columnOptions = document.createElement('div');
+        columnOptions.setAttribute('class', 'column-options');
+        form.appendChild(columnOptions);
+
+        const columnName = document.createElement('input');
+        columnName.setAttribute('class', 'input');
+        columnName.setAttribute('type', 'text');
+        columnName.setAttribute('placeholder', 'Enter the column name: ');
+        columnOptions.appendChild(columnName);
+
+        const columnDataType = document.createElement('input');
+        columnDataType.setAttribute('class', 'input');
+        columnDataType.setAttribute('type', 'text');
+        columnDataType.setAttribute('placeholder', 'Enter the column datatype: ');
+        columnOptions.appendChild(columnDataType);
+
+        const columnMaxChars = document.createElement('input');
+        columnMaxChars.setAttribute('class', 'input');
+        columnMaxChars.setAttribute('type', 'text');
+        columnMaxChars.setAttribute('placeholder', 'Enter the characters limit: ');
+        columnOptions.appendChild(columnMaxChars);
+
+        const notNullBox = document.createElement('input');
+        notNullBox.setAttribute('class', 'input');
+        notNullBox.setAttribute('type', 'checkbox');
+        columnOptions.appendChild(notNullBox);
+
+        const primaryKeyRadio = document.createElement('input');
+        primaryKeyRadio.setAttribute('class', 'input');
+        primaryKeyRadio.setAttribute('type', 'radio');
+        primaryKeyRadio.setAttribute('namie', 'primKey');
+        columnOptions.appendChildprimaryKeyRadio;
+
+        //const columnName = document.createElement('input');
+        //columnName.setAttribute('class', 'input');
+        //columnName.setAttribute('type', 'text');
+        //columnName.setAttribute('placeholder', 'Enter the column name: ');
+        //columnOptions.appendChild(columnName);
+        
     }
 }
 
