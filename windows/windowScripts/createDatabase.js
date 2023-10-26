@@ -110,8 +110,8 @@ next.addEventListener("click", () => {
     }
 
 
-            /* Handle naming the each table and moving to the next step */
-            /* Check for the nextStatus number */
+    /* Handle naming the each table and moving to the next step */
+    /* Check for the nextStatus number */
     if( nextStatus == 2 ){
 
         if (databaseTableName.value.trim() !== "") {
@@ -148,7 +148,46 @@ next.addEventListener("click", () => {
             console.log(tables)
         }
     }
+
+    if(nextStatus == 4){
+        onNextButtonClick();
+    }
 });
+
+/* Form */
+let currentIndex = 0;
+const formContainer = document.getElementById('form-container');
+const form = document.getElementById('form');
+
+function generateFormFields(object) {
+    form.innerHTML = ''; // Clear previous form fields
+
+    for (let i = 0; i < object.numberOfColumns; i++) {
+        const input = document.createElement('input');
+        input.setAttribute('class', 'input');
+        input.setAttribute('type', 'text');
+        input.setAttribute('name', `field${i + 1}`);
+        form.appendChild(input);
+    }
+}
+
+function showCurrentForm() {
+    if (currentIndex >= 0 && currentIndex < tables.length) {
+        generateFormFields(tables[currentIndex]);
+    }
+}
+
+function onNextButtonClick() {
+    console.log('active')
+    showCurrentForm();
+    currentIndex++;
+
+    /* If the last columns filled out */
+    if (currentIndex >= tables.length) {
+        currentIndex = 0; // Loop back to the beginning
+    }
+}
+
 
 
 
