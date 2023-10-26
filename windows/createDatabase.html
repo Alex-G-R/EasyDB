@@ -15,6 +15,7 @@
         }
         
         .input{
+            margin-top: 20px;
             height: 60px;
             border-radius: 25px;
             border: 2px #fff solid;
@@ -32,10 +33,32 @@
             display: none;
         }
 
+        .column-options{
+            display: flex;
+        }
+
+        #form-container{
+            display: flex;
+            flex-direction: column;
+        }
+
+        #form{
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center horizontally */
+            justify-content: center; /* Center vertically */
+            height: 90vh; /* Set the form container to full viewport height */
+        }
+
         #next{
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
             height: 60px;
             border-radius: 25px;
             border: 2px #fff solid;
+            margin-bottom: 30px;
             width: 400px;
             font-size: 1.3em;
             font-weight: 600;
@@ -84,9 +107,9 @@
 
 
         </div>
-        <div class="main-box">
-            <input type="button" id="next" value="Next">
-        </div>
+        
+        <input type="button" id="next" value="Next">
+        
 
     </div>
 
