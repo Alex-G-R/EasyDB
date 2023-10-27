@@ -143,9 +143,6 @@ next.addEventListener("click", () => {
 
             /* Change the h1 */
             mainH1.innerHTML = "Creating an database"
-
-            /* Debug */
-            console.log(tables)
         }
     }
 
@@ -231,11 +228,8 @@ function onNextButtonClick() {
     showCurrentForm();
     currentIndex++;
 
-    /* If the last columns filled out */
-    if (currentIndex >= tables.length) {
-
-        /* Update the status */
-        nextStatus = 5;
+    if( currentIndex > tables.length ){
+        alert("The columns has been generated")
     }
 }
 

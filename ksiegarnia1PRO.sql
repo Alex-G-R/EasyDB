@@ -46,7 +46,7 @@ CREATE TABLE `ksiazki` (
 
 --
 -- Dumping data for table `ksiazki`
---
+-- 
 
 LOCK TABLES `ksiazki` WRITE;
 
