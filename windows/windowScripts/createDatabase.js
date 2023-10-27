@@ -160,48 +160,63 @@ const formContainer = document.getElementById('form-container');
 const form = document.getElementById('form');
 
 function generateFormFields(object) {
+
     form.innerHTML = ''; // Clear previous form fields
 
     for (let i = 0; i < object.numberOfColumns; i++) {
+
+        mainH1.innerHTML = `Table ${tablesNames[i]}`;
 
         const columnOptions = document.createElement('div');
         columnOptions.setAttribute('class', 'column-options');
         form.appendChild(columnOptions);
 
         const columnName = document.createElement('input');
+        columnName.setAttribute('id', `columnName_${i}`);
         columnName.setAttribute('class', 'input');
         columnName.setAttribute('type', 'text');
-        columnName.setAttribute('placeholder', 'Enter the column name: ');
+        columnName.setAttribute('placeholder', 'Column name: ');
         columnOptions.appendChild(columnName);
 
         const columnDataType = document.createElement('input');
+        columnDataType.setAttribute('id', `columnDataType_${i}`);
         columnDataType.setAttribute('class', 'input');
         columnDataType.setAttribute('type', 'text');
-        columnDataType.setAttribute('placeholder', 'Enter the column datatype: ');
+        columnDataType.setAttribute('placeholder', 'Column datatype: ');
         columnOptions.appendChild(columnDataType);
 
         const columnMaxChars = document.createElement('input');
-        columnMaxChars.setAttribute('class', 'input');
+        columnMaxChars.setAttribute('id', `columnMaxChars_${i}`);
+        columnMaxChars.setAttribute('class', 'input maxChars');
         columnMaxChars.setAttribute('type', 'text');
-        columnMaxChars.setAttribute('placeholder', 'Enter the characters limit: ');
+        columnMaxChars.setAttribute('placeholder', 'Length limit: ');
         columnOptions.appendChild(columnMaxChars);
 
+        const notNullBoxLabel = document.createElement('label');
+        notNullBoxLabel.setAttribute('class', 'label')
+        notNullBoxLabel.setAttribute('for', 'notNull');
+        notNullBoxLabel.innerText = "Not Null";
+        columnOptions.appendChild(notNullBoxLabel);
+
         const notNullBox = document.createElement('input');
-        notNullBox.setAttribute('class', 'input');
+        notNullBox.setAttribute('id', `notNullBox_${i}`);
+        notNullBox.setAttribute('class', 'notNullCheckbox');
         notNullBox.setAttribute('type', 'checkbox');
+        notNullBox.setAttribute('name', 'notNull');
         columnOptions.appendChild(notNullBox);
 
-        const primaryKeyRadio = document.createElement('input');
-        primaryKeyRadio.setAttribute('class', 'input');
-        primaryKeyRadio.setAttribute('type', 'radio');
-        primaryKeyRadio.setAttribute('namie', 'primKey');
-        columnOptions.appendChildprimaryKeyRadio;
+        const primaryKeyRadioLabel = document.createElement('label');
+        primaryKeyRadioLabel.setAttribute('class', 'label');
+        primaryKeyRadioLabel.setAttribute('for', 'primKey');
+        primaryKeyRadioLabel.innerText = "Primary Key";
+        columnOptions.appendChild(primaryKeyRadioLabel);
 
-        //const columnName = document.createElement('input');
-        //columnName.setAttribute('class', 'input');
-        //columnName.setAttribute('type', 'text');
-        //columnName.setAttribute('placeholder', 'Enter the column name: ');
-        //columnOptions.appendChild(columnName);
+        const primaryKeyRadio = document.createElement('input');
+        primaryKeyRadio.setAttribute('id', `primaryKeyRadio_${i}`);
+        primaryKeyRadio.setAttribute('class', 'radioInput');
+        primaryKeyRadio.setAttribute('type', 'radio');
+        primaryKeyRadio.setAttribute('name', 'primKey');
+        columnOptions.appendChild(primaryKeyRadio);
         
     }
 }
@@ -213,13 +228,14 @@ function showCurrentForm() {
 }
 
 function onNextButtonClick() {
-    console.log('active')
     showCurrentForm();
     currentIndex++;
 
     /* If the last columns filled out */
     if (currentIndex >= tables.length) {
-        currentIndex = 0; // Loop back to the beginning
+
+        /* Update the status */
+        nextStatus = 5;
     }
 }
 
