@@ -15,6 +15,8 @@
         }
         
         .input{
+            margin-left: 10px;
+            margin-right: 10px;
             margin-top: 20px;
             height: 60px;
             border-radius: 25px;
@@ -37,16 +39,49 @@
             display: flex;
         }
 
+        .maxChars{
+            max-width: 200px;
+        }
+
+        .notNullCheckbox{
+            height: 45px;
+            width: 45px;
+            margin-left: 10px;
+            margin-right: 10px;
+            margin-top: 27px;
+            border-radius: 15px;
+        }
+
+        .radioInput{
+            height: 45px;
+            width: 45px;
+            margin-left: 10px;
+            margin-right: 10px;
+            margin-top: 27px;
+        }
+
+        .label {
+            font-size: 1.1em;
+            margin-left: 10px;
+            margin-right: 10px;
+            margin-top: 20px;
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            text-align: center; 
+        }
+
         #form-container{
             display: flex;
             flex-direction: column;
+            align-items: center; /* Center horizontally */
+            justify-content: center; /* Center vertically */
         }
 
         #form{
             display: flex;
             flex-direction: column;
             align-items: center; /* Center horizontally */
-            justify-content: center; /* Center vertically */
             height: 90vh; /* Set the form container to full viewport height */
         }
 
