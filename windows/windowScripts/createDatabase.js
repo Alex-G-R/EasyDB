@@ -160,14 +160,18 @@ function generateFormFields(object) {
 
     form.innerHTML = ''; // Clear previous form fields
 
+    /* If every table columns has not been filled */
     for (let i = 0; i < object.numberOfColumns; i++) {
 
+        /* Change the main h1 */
         mainH1.innerHTML = `Table ${tablesNames[i]}`;
 
+        /* Main container for the form*/
         const columnOptions = document.createElement('div');
         columnOptions.setAttribute('class', 'column-options');
         form.appendChild(columnOptions);
 
+        /* Input field type text - column name */
         const columnName = document.createElement('input');
         columnName.setAttribute('id', `columnName_${i}`);
         columnName.setAttribute('class', 'input');
@@ -175,6 +179,7 @@ function generateFormFields(object) {
         columnName.setAttribute('placeholder', 'Column name: ');
         columnOptions.appendChild(columnName);
 
+        /* Input field type text - column datatype name */
         const columnDataType = document.createElement('input');
         columnDataType.setAttribute('id', `columnDataType_${i}`);
         columnDataType.setAttribute('class', 'input');
@@ -182,6 +187,7 @@ function generateFormFields(object) {
         columnDataType.setAttribute('placeholder', 'Column datatype: ');
         columnOptions.appendChild(columnDataType);
 
+        /* Input field type number - column max characyers */
         const columnMaxChars = document.createElement('input');
         columnMaxChars.setAttribute('id', `columnMaxChars_${i}`);
         columnMaxChars.setAttribute('class', 'input maxChars');
@@ -189,25 +195,44 @@ function generateFormFields(object) {
         columnMaxChars.setAttribute('placeholder', 'Length limit: ');
         columnOptions.appendChild(columnMaxChars);
 
+        /* Not Null checkbox - label */
         const notNullBoxLabel = document.createElement('label');
         notNullBoxLabel.setAttribute('class', 'label')
         notNullBoxLabel.setAttribute('for', 'notNull');
         notNullBoxLabel.innerText = "Not Null";
         columnOptions.appendChild(notNullBoxLabel);
 
+        /* Not Null checkbox  */
         const notNullBox = document.createElement('input');
         notNullBox.setAttribute('id', `notNullBox_${i}`);
-        notNullBox.setAttribute('class', 'notNullCheckbox');
+        notNullBox.setAttribute('class', 'checkboxForm');
         notNullBox.setAttribute('type', 'checkbox');
         notNullBox.setAttribute('name', 'notNull');
         columnOptions.appendChild(notNullBox);
 
+        /* auto increment - label */
+        const autoIncrementLabel = document.createElement('label');
+        autoIncrementLabel.setAttribute('class', 'label')
+        autoIncrementLabel.setAttribute('for', 'autoIncrement');
+        autoIncrementLabel.innerText = "Increment";
+        columnOptions.appendChild(autoIncrementLabel);
+
+        /* auto increment checkbox  */
+        const autoIncrement = document.createElement('input');
+        autoIncrement.setAttribute('id', `autoIncrement_${i}`);
+        autoIncrement.setAttribute('class', 'checkboxForm');
+        autoIncrement.setAttribute('type', 'checkbox');
+        autoIncrement.setAttribute('name', 'autoIncrement');
+        columnOptions.appendChild(autoIncrement);
+
+        /* Primary key radio - label */
         const primaryKeyRadioLabel = document.createElement('label');
         primaryKeyRadioLabel.setAttribute('class', 'label');
         primaryKeyRadioLabel.setAttribute('for', 'primKey');
         primaryKeyRadioLabel.innerText = "Primary Key";
         columnOptions.appendChild(primaryKeyRadioLabel);
 
+        /* Primary key radio - label */
         const primaryKeyRadio = document.createElement('input');
         primaryKeyRadio.setAttribute('id', `primaryKeyRadio_${i}`);
         primaryKeyRadio.setAttribute('class', 'radioInput');
