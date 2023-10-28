@@ -88,6 +88,28 @@
             background-color: #fff;
         }
 
+        .column-name{
+            width: 200px;
+        }
+
+        .column-creator-button{
+            text-align: center;
+            margin-left: 10px;
+            margin-right: 10px;
+            margin-top: 20px;
+            height: 60px;
+            border-radius: 25px;
+            border: 2px #fff solid;
+            width: 100px;
+            font-size: 1.3em;
+            font-weight: 600;
+            color:#fff;
+            transition: all ease 0.5s;
+        }.column-creator-button:hover{
+            color: black;
+            background-color: #fff;
+        }
+
         #next{
             position: absolute;
             bottom: 0;
@@ -104,6 +126,27 @@
             transition: all ease 0.5s;
         }
         #next:hover{
+            color: black;
+            background-color: #fff;
+        }
+
+        #confirm{
+            display: none;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            height: 60px;
+            border-radius: 25px;
+            border: 2px #fff solid;
+            margin-bottom: 30px;
+            width: 400px;
+            font-size: 1.3em;
+            font-weight: 600;
+            color:#fff;
+            transition: all ease 0.5s;
+        }
+        #confirm:hover{
             color: black;
             background-color: #fff;
         }
@@ -125,7 +168,7 @@
     </div>
 
     <div class="back-to-the-table-creator option-button" id="back-to-tables">
-        <h2 class="option-button-h2">Back to the table creator</h2>
+        <h2 class="option-button-h2">Go back without saving</h2>
     </div>
 
     <div class="add-column option-button" id="add-column">
@@ -150,6 +193,8 @@
         </div>
         
         <input type="button" id="next" value="Next">
+
+        <input type="button" id="confirm" value="Confirm">
 
         
 

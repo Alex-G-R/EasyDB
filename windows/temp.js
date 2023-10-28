@@ -113,20 +113,27 @@ addTable.addEventListener('click', () => {
             tableToDelete.parentNode.removeChild(tableToDelete);
         }
     });
-    
+
 
     numberOfTables++;
 });
 
 /* Back to the table creator button */
 const backToTheTableCreator = document.getElementById('back-to-tables');
-const addColumn = document.getElementById("add-column");
+
+/* Confirm button */
+const confirm = document.getElementById('confirm');
 
 /* Handle adding columns to the tables */
 function editTheTableColums(tableToEdit, buttonNumber) {
 
+    let numberOfColumns = 0;
+
     /* Check if the table name is not empty */
-    if( tableToEdit.value.trim() != "" ){
+    if (tableToEdit.value.trim() != "") {
+
+        const addColumn = document.getElementById('add-column');
+
         mainH1.innerHTML = `Adding columns to the table <i>${tableToEdit.value}</i>`;
 
         /* Chnage the page */
@@ -138,10 +145,73 @@ function editTheTableColums(tableToEdit, buttonNumber) {
         backToMainMenu.style.display = "none";
         backToTheTableCreator.style.display = "inline";
         addColumn.style.display = "inline";
+        confirm.style.display = 'inline';
+
+        //Create a new container assosiated with the table
+        const tableColumns = document.createElement('div');
+        tableColumns.setAttribute('class', 'tableColumns')
+        tableColumns.setAttribute('id', `tableColumns_${buttonNumber}`)
+        editColumnsContainer.appendChild(tableColumns);
+
+        let currentTable = document.getElementById(`tableColumns_${buttonNumber}`)
+
+        // Loop through the children elements and hide them
+        for (let i = 0; i < editColumnsContainer.children.length; i++) {
+            editColumnsContainer.children[i].style.display = "none";
+        }
+
+        currentTable.style.display = "inline";
+
+
+        /* Column creator */
+        addColumn.addEventListener('click', () => {
+            const currentButtonNumber = buttonNumber;
+
+            // Create a container for the column
+            const columnContainer = document.createElement('div');
+            columnContainer.setAttribute('class', 'columnContainer')
+            columnContainer.setAttribute('id', `columnContainer_${numberOfColumns}_${currentButtonNumber}`)
+            currentTable.appendChild(columnContainer);
+
+            let currentColumnContainer = document.getElementById(`columnContainer_${numberOfColumns}_${currentButtonNumber}`);
+
+            /* Input field type text - column name */
+            const columnName = document.createElement('input');
+            columnName.setAttribute('id', `columnName_${numberOfColumns}_${currentButtonNumber}`);
+            columnName.setAttribute('class', 'input column-name');
+            columnName.setAttribute('type', 'text');
+            columnName.setAttribute('placeholder', 'Column name: ');
+            currentColumnContainer.appendChild(columnName);
+
+            /* Input field type button - delete the column */
+            const deleteTheColumn = document.createElement('input');
+            deleteTheColumn.setAttribute('id', `deleteTheColumnButton_${numberOfColumns}_${currentButtonNumber}`);
+            deleteTheColumn.setAttribute('class', 'delete-the-column-button column-creator-button');
+            deleteTheColumn.setAttribute('type', 'button');
+            deleteTheColumn.setAttribute('value', 'Delete');
+            deleteTheColumn.setAttribute('data-column-number', numberOfColumns)
+            currentColumnContainer.appendChild(deleteTheColumn);
+
+            // Attach click event listener to the new delete button
+            deleteTheColumn.addEventListener('click', () => {
+                // Get the value of the data-column-number attribute
+                let buttonNumber = deleteTheColumn.getAttribute('data-column-number');
+                // Use the buttonNumber to identify the associated columnContaine
+                let columnToDelete = document.getElementById(`columnContainer_${numberOfColumns}_${buttonNumber}`);
+
+                if (columnToDelete) {
+                    columnToDelete.parentNode.removeChild(columnToDelete);
+                }
+            });
+
+
+            numberOfColumns++;
+        });
 
     }
 
 }
+
 
 /* Handle going back from column creator to the table creator */
 backToTheTableCreator.addEventListener('click', () => {
@@ -155,7 +225,8 @@ backToTheTableCreator.addEventListener('click', () => {
     addTable.style.display = "inline";
     backToMainMenu.style.display = "inline";
     backToTheTableCreator.style.display = "none";
-    addColumn.style.display = "none";
+    document.getElementById("add-column").style.display = "none";
+    confirm.style.display = 'none';
 
 });
 
