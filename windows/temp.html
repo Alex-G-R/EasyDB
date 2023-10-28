@@ -35,54 +35,47 @@
             display: none;
         }
 
-        .column-options{
-            display: flex;
+        .add-table{
+            position: absolute;
+            top: 0;
+            right: 0;
+            color: white;
+            border: lightgray 2px solid;
+            margin-top: 7px;
+            margin-right: 7px;
+            cursor: pointer;
+            transition: all ease 0.1s;
+            display: none;
+        } .add-table-h2{
+            transition: all ease 0.1s; 
+            padding-left: 5px;
+            padding-right: 5px;
+            padding-top: 3px;
+            padding-bottom: 3px;
+            font-size: 1.5em;
         }
 
-        .maxChars{
-            max-width: 200px;
+        .add-table:hover, .add-table-h2:hover{
+            background-color: #fff;
+            color: black;
         }
 
-        .checkboxForm{
-            height: 45px;
-            width: 45px;
-            margin-left: 10px;
-            margin-right: 10px;
-            margin-top: 27px;
-            border-radius: 15px;
-        }
-
-        .radioInput{
-            height: 45px;
-            width: 45px;
-            margin-left: 10px;
-            margin-right: 10px;
-            margin-top: 27px;
-        }
-
-        .label {
-            font-size: 1.1em;
+        .table-creator-button{
+            text-align: center;
             margin-left: 10px;
             margin-right: 10px;
             margin-top: 20px;
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            text-align: center; 
-        }
-
-        #form-container{
-            display: flex;
-            flex-direction: column;
-            align-items: center; /* Center horizontally */
-            justify-content: center; /* Center vertically */
-        }
-
-        #form{
-            display: flex;
-            flex-direction: column;
-            align-items: center; /* Center horizontally */
-            height: 90vh; /* Set the form container to full viewport height */
+            height: 60px;
+            border-radius: 25px;
+            border: 2px #fff solid;
+            width: 200px;
+            font-size: 1.3em;
+            font-weight: 600;
+            color:#fff;
+            transition: all ease 0.5s;
+        }.table-creator-button:hover{
+            color: black;
+            background-color: #fff;
         }
 
         #next{
@@ -104,17 +97,6 @@
             color: black;
             background-color: #fff;
         }
-
-        #databaseTableNumber{
-            display: none;
-        }
-        #databaseTableName{
-            display: none;
-        }
-        #numberOfColumns{
-            display: none;
-        }
-
     </style>
 </head>
 
@@ -123,33 +105,29 @@
         <h2 class="back-to-main-menu-h2">Menu</h2>
     </div>
 
+    <div class="add-table" id="add-table">
+        <h2 class="add-table-h2">Add a new table</h2>
+    </div>
+
     <div class="main-container">
         <div class="main-box" id="container-middle">
             <h1 id="mainH1">Creating an database</h1>
             <br> <br>
 
             <input type="text" class="input" id="databaseName" name="databaseName" placeholder="Enter a database name: ">
-            
-            <input type="number" class="input" id="databaseTableNumber" name="databaseTableNumber" placeholder="Enter the number of tables: ">
-            <input type="text" class="input" id="databaseTableName" name="databaseTableName" placeholder="Enter the name of the table 1: ">
-            <input type="number" class="input" id="numberOfColumns" placeholder="Enter the number of columns: ">
 
+            <div id="newTableContainer">
 
-            <div id="form-container">
-                <form id="form">
-                    <!-- Form fields will be generated here -->
-                </form>
             </div>
-
-
         </div>
         
         <input type="button" id="next" value="Next">
+
         
 
     </div>
 
-    <script src="./windowScripts/createDatabase.js">
+    <script src="temp.js">
     </script>
 
 </body>
