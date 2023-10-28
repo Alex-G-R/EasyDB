@@ -34,6 +34,9 @@ next.addEventListener("click", () => {
 
                 /* Show the add table button */
                 addTable.style.display = "flex";
+
+                /* hide the next button */
+                next.style.display = "none";
             }
             break;
 
@@ -47,6 +50,7 @@ next.addEventListener("click", () => {
 const addTable = document.getElementById("add-table");
 
 const newTableContainer = document.getElementById('newTableContainer');
+const editColumnsContainer = document.getElementById('editColumnsContainer');
 
 let numberOfTables = 0;
 
@@ -72,8 +76,22 @@ addTable.addEventListener('click', () => {
     addColumns.setAttribute('id', `addColumnsButton_${numberOfTables}`);
     addColumns.setAttribute('class', 'add-columns-button table-creator-button');
     addColumns.setAttribute('type', 'button');
+    addColumns.setAttribute('data-table-number', numberOfTables)
     addColumns.setAttribute('value', 'Add columns');
     tableContainer.appendChild(addColumns);
+
+    // Attach click event listener to the new add columns button
+    addColumns.addEventListener('click', () => {
+        // Get the value of the data-table-number attribute
+        let buttonNumber = addColumns.getAttribute('data-table-number');
+        // Use the buttonNumber to identify the associated tableName
+        let tableToEdit = document.getElementById(`tableName_${buttonNumber}`);
+
+        if (tableToEdit) {
+            editTheTableColums(tableToEdit, buttonNumber);
+        }
+    });
+
 
     /* Input field type button - delete the table */
     const deleteTheTable = document.createElement('input');
@@ -100,7 +118,46 @@ addTable.addEventListener('click', () => {
     numberOfTables++;
 });
 
+/* Back to the table creator button */
+const backToTheTableCreator = document.getElementById('back-to-tables');
+const addColumn = document.getElementById("add-column");
 
+/* Handle adding columns to the tables */
+function editTheTableColums(tableToEdit, buttonNumber) {
+
+    /* Check if the table name is not empty */
+    if( tableToEdit.value.trim() != "" ){
+        mainH1.innerHTML = `Adding columns to the table <i>${tableToEdit.value}</i>`;
+
+        /* Chnage the page */
+        newTableContainer.style.display = "none";
+        editColumnsContainer.style.display = "inline";
+
+        /* Chnage the button visibility */
+        addTable.style.display = "none";
+        backToMainMenu.style.display = "none";
+        backToTheTableCreator.style.display = "inline";
+        addColumn.style.display = "inline";
+
+    }
+
+}
+
+/* Handle going back from column creator to the table creator */
+backToTheTableCreator.addEventListener('click', () => {
+    mainH1.innerHTML = `Editing ${databaseName}`;
+
+    /* Chnage the page */
+    newTableContainer.style.display = "inline";
+    editColumnsContainer.style.display = "none";
+
+    /* Chnage the button visibility */
+    addTable.style.display = "inline";
+    backToMainMenu.style.display = "inline";
+    backToTheTableCreator.style.display = "none";
+    addColumn.style.display = "none";
+
+});
 
 
 
