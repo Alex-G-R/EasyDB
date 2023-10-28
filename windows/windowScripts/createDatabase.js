@@ -253,6 +253,7 @@ function onNextButtonClick() {
     showCurrentForm();
     currentIndex++;
 
+    /* If columns for every tables have been filled out alert me */
     if( currentIndex > tables.length ){
         alert("The columns has been generated")
     }
