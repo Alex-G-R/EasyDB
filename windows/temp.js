@@ -88,6 +88,7 @@ addTable.addEventListener('click', () => {
         let tableToEdit = document.getElementById(`tableName_${buttonNumber}`);
 
         if (tableToEdit) {
+            console.log("debug 1")
             editTheTableColums(tableToEdit, buttonNumber);
         }
     });
@@ -124,15 +125,15 @@ const backToTheTableCreator = document.getElementById('back-to-tables');
 /* Confirm button */
 const confirm = document.getElementById('confirm');
 
+const addColumn = document.getElementById('add-column');
+
 /* Handle adding columns to the tables */
 function editTheTableColums(tableToEdit, buttonNumber) {
-
+    console.log("debug 2")
     let numberOfColumns = 0;
 
     /* Check if the table name is not empty */
     if (tableToEdit.value.trim() != "") {
-
-        const addColumn = document.getElementById('add-column');
 
         mainH1.innerHTML = `Adding columns to the table <i>${tableToEdit.value}</i>`;
 
@@ -165,57 +166,68 @@ function editTheTableColums(tableToEdit, buttonNumber) {
 
         /* Column creator */
         addColumn.addEventListener('click', () => {
-            const currentButtonNumber = buttonNumber;
-
-            // Create a container for the column
-            const columnContainer = document.createElement('div');
-            columnContainer.setAttribute('class', 'columnContainer')
-            columnContainer.setAttribute('id', `columnContainer_${numberOfColumns}_${currentButtonNumber}`)
-            currentTable.appendChild(columnContainer);
-
-            let currentColumnContainer = document.getElementById(`columnContainer_${numberOfColumns}_${currentButtonNumber}`);
-
-            /* Input field type text - column name */
-            const columnName = document.createElement('input');
-            columnName.setAttribute('id', `columnName_${numberOfColumns}_${currentButtonNumber}`);
-            columnName.setAttribute('class', 'input column-name');
-            columnName.setAttribute('type', 'text');
-            columnName.setAttribute('placeholder', 'Column name: ');
-            currentColumnContainer.appendChild(columnName);
-
-            /* Input field type button - delete the column */
-            const deleteTheColumn = document.createElement('input');
-            deleteTheColumn.setAttribute('id', `deleteTheColumnButton_${numberOfColumns}_${currentButtonNumber}`);
-            deleteTheColumn.setAttribute('class', 'delete-the-column-button column-creator-button');
-            deleteTheColumn.setAttribute('type', 'button');
-            deleteTheColumn.setAttribute('value', 'Delete');
-            deleteTheColumn.setAttribute('data-column-number', numberOfColumns)
-            currentColumnContainer.appendChild(deleteTheColumn);
-
-            // Attach click event listener to the new delete button
-            deleteTheColumn.addEventListener('click', () => {
-                // Get the value of the data-column-number attribute
-                let buttonNumber = deleteTheColumn.getAttribute('data-column-number');
-                // Use the buttonNumber to identify the associated columnContaine
-                let columnToDelete = document.getElementById(`columnContainer_${numberOfColumns}_${buttonNumber}`);
-
-                if (columnToDelete) {
-                    columnToDelete.parentNode.removeChild(columnToDelete);
-                }
-            });
-
-
-            numberOfColumns++;
+            addColumnFunc(buttonNumber, numberOfColumns, currentTable);
         });
+          
 
     }
 
 }
 
+const addColumnFunc = function(buttonNumber, numberOfColumns, currentTable) {
+    
+    console.log("debug 3")
+    const currentButtonNumber = buttonNumber;
+
+    // Create a container for the column
+    const columnContainer = document.createElement('div');
+    columnContainer.setAttribute('class', 'columnContainer')
+    columnContainer.setAttribute('id', `columnContainer_${numberOfColumns}_${currentButtonNumber}`)
+    currentTable.appendChild(columnContainer);
+
+    let currentColumnContainer = document.getElementById(`columnContainer_${numberOfColumns}_${currentButtonNumber}`);
+
+    /* Input field type text - column name */
+    const columnName = document.createElement('input');
+    columnName.setAttribute('id', `columnName_${numberOfColumns}_${currentButtonNumber}`);
+    columnName.setAttribute('class', 'input column-name');
+    columnName.setAttribute('type', 'text');
+    columnName.setAttribute('placeholder', 'Column name: ');
+    currentColumnContainer.appendChild(columnName);
+
+    /* Input field type button - delete the column */
+    const deleteTheColumn = document.createElement('input');
+    deleteTheColumn.setAttribute('id', `deleteTheColumnButton_${numberOfColumns}_${currentButtonNumber}`);
+    deleteTheColumn.setAttribute('class', 'delete-the-column-button column-creator-button');
+    deleteTheColumn.setAttribute('type', 'button');
+    deleteTheColumn.setAttribute('value', 'Delete');
+    deleteTheColumn.setAttribute('data-column-number', numberOfColumns)
+    currentColumnContainer.appendChild(deleteTheColumn);
+
+    // Attach click event listener to the new delete button
+    deleteTheColumn.addEventListener('click', () => {
+        // Get the value of the data-column-number attribute
+        let buttonNumber = deleteTheColumn.getAttribute('data-column-number');
+        // Use the buttonNumber to identify the associated columnContaine
+        let columnToDelete = document.getElementById(`columnContainer_${numberOfColumns}_${buttonNumber}`);
+
+        if (columnToDelete) {
+            columnToDelete.parentNode.removeChild(columnToDelete);
+        }
+    });
+
+
+    numberOfColumns++;
+};
+
 
 /* Handle going back from column creator to the table creator */
 backToTheTableCreator.addEventListener('click', () => {
+    console.log("back")
+
     mainH1.innerHTML = `Editing ${databaseName}`;
+
+    addColumn.removeEventListener('click', addColumnFunc);
 
     /* Chnage the page */
     newTableContainer.style.display = "inline";
