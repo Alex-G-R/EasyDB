@@ -167,7 +167,7 @@ function editTheTableColums(tableToEdit, buttonNumber) {
         /* Column creator */
         addColumn.addEventListener('click', () => {
             addColumnFunc(buttonNumber, numberOfColumns, currentTable);
-        });
+        }); // sth broke here
           
 
     }
