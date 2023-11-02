@@ -1,0 +1,206 @@
+
+<head>
+    <link rel="stylesheet" href="../styles/default.css">
+    <style>
+        .main-container{
+            flex-direction: column; 
+            height: 95vh;
+        }
+        
+        .main-box{
+            flex: 1;
+            width: 95vw;
+            overflow: hidden;
+            flex-direction: column;
+        }
+        
+        .input{
+            margin-left: 10px;
+            margin-right: 10px;
+            margin-top: 20px;
+            height: 60px;
+            border-radius: 25px;
+            border: 2px #fff solid;
+            width: 400px;
+            font-size: 1.3em;
+            font-weight: 600;
+            padding-left: 25px;
+            color:#fff;
+            -webkit-appearance: none;
+            appearance: none; /* Standard property for compatibility */
+        }
+
+        .input::-webkit-inner-spin-button,
+        .input::-webkit-outer-spin-button {
+            display: none;
+        }
+
+        .option-button{
+            position: absolute;
+            top: 0;
+            right: 0;
+            color: white;
+            border: lightgray 2px solid;
+            margin-top: 7px;
+            margin-right: 7px;
+            cursor: pointer;
+            transition: all ease 0.1s;
+            display: none;
+        } .option-button-h2{
+            transition: all ease 0.1s; 
+            padding-left: 5px;
+            padding-right: 5px;
+            padding-top: 3px;
+            padding-bottom: 3px;
+            font-size: 1.5em;
+        }
+
+        .option-button:hover, .option-button-h2:hover{
+            background-color: #fff;
+            color: black;
+        }
+
+        .back-to-the-table-creator{
+            display: none;
+            left: 0;
+            right: unset;
+        }
+
+        .add-column{
+            display: none;
+        }
+
+        .table-creator-button{
+            text-align: center;
+            margin-left: 10px;
+            margin-right: 10px;
+            margin-top: 20px;
+            height: 60px;
+            border-radius: 25px;
+            border: 2px #fff solid;
+            width: 200px;
+            font-size: 1.3em;
+            font-weight: 600;
+            color:#fff;
+            transition: all ease 0.5s;
+        }.table-creator-button:hover{
+            color: black;
+            background-color: #fff;
+        }
+
+        .column-name{
+            width: 200px;
+        }
+
+        .column-creator-button{
+            text-align: center;
+            margin-left: 10px;
+            margin-right: 10px;
+            margin-top: 20px;
+            height: 60px;
+            border-radius: 25px;
+            border: 2px #fff solid;
+            width: 100px;
+            font-size: 1.3em;
+            font-weight: 600;
+            color:#fff;
+            transition: all ease 0.5s;
+        }.column-creator-button:hover{
+            color: black;
+            background-color: #fff;
+        }
+
+        #next{
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            height: 60px;
+            border-radius: 25px;
+            border: 2px #fff solid;
+            margin-bottom: 30px;
+            width: 400px;
+            font-size: 1.3em;
+            font-weight: 600;
+            color:#fff;
+            transition: all ease 0.5s;
+        }
+        #next:hover{
+            color: black;
+            background-color: #fff;
+        }
+
+        #confirm{
+            display: none;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            height: 60px;
+            border-radius: 25px;
+            border: 2px #fff solid;
+            margin-bottom: 30px;
+            width: 400px;
+            font-size: 1.3em;
+            font-weight: 600;
+            color:#fff;
+            transition: all ease 0.5s;
+        }
+        #confirm:hover{
+            color: black;
+            background-color: #fff;
+        }
+
+        #editColumnsContainer{
+            display: none;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="back-to-main-menu" id="back-to-menu">
+        <h2 class="back-to-main-menu-h2">Menu</h2>
+    </div>
+
+    <div class="add-table option-button" id="add-table">
+        <h2 class="option-button-h2">Add a new table</h2>
+    </div>
+
+    <div class="back-to-the-table-creator option-button" id="back-to-tables">
+        <h2 class="option-button-h2">Go back without saving</h2>
+    </div>
+
+    <div class="add-column option-button" id="add-column">
+        <h2 class="option-button-h2">Add a new column</h2>
+    </div>
+
+
+    <div class="main-container">
+        <div class="main-box" id="container-middle">
+            <h1 id="mainH1">Creating an database</h1>
+            <br> <br>
+
+            <input type="text" class="input" id="databaseName" name="databaseName" placeholder="Enter a database name: ">
+
+            <div id="newTableContainer">
+
+            </div>
+
+            <div id="editColumnsContainer">
+                
+            </div>
+        </div>
+        
+        <input type="button" id="next" value="Next">
+
+        <input type="button" id="confirm" value="Confirm">
+
+        
+
+    </div>
+
+    <script src="temp.js">
+    </script>
+
+</body>

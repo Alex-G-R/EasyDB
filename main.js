@@ -55,7 +55,7 @@ app.whenReady().then(() => {
                 }
             });
             /* Load the createDatabase.html file as a face */
-            createDatabaseWindow.loadFile('./windows/createDatabase.html');
+            createDatabaseWindow.loadFile('./windows/temp.html');
             /* Change the window name */
             createDatabaseWindow.setTitle('EasyDB ~ Creating Database');
         }
